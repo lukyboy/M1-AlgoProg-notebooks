@@ -3,7 +3,7 @@ python: "3.6"
 install:
   - pip install git+https://github.com/OpenDreamKit/planetaryum.git
 script:
-  - planetaryum static title="Algèbre Commutative et Effective – MA2 ACE" baseurl="https://github.com/defeo/M1-AlgoProg-notebooks/raw/master/%" binderurl="https://mybinder.org/v2/gh/defeo/M1-AlgoPRog-notebooks/master?filepath=%"
+  - planetaryum static title="Analyse d'Algorithmes et Programmation" baseurl="https://github.com/defeo/M1-AlgoProg-notebooks/raw/master/%" binderurl="https://mybinder.org/v2/gh/defeo/M1-AlgoPRog-notebooks/master?filepath=%"
 deploy:
   provider: pages
   local-dir: _site
