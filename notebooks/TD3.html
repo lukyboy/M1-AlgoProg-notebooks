@@ -1,0 +1,425 @@
+
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Parenth&#233;sage">Parenth&#233;sage<a class="anchor-link" href="#Parenth&#233;sage">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">estOuvrante</span><span class="p">(</span><span class="n">c</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">c</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;(&#39;</span><span class="p">,</span> <span class="s1">&#39;[&#39;</span><span class="p">,</span> <span class="s1">&#39;{&#39;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">estFermante</span><span class="p">(</span><span class="n">c</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">c</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;)&#39;</span><span class="p">,</span> <span class="s1">&#39;]&#39;</span><span class="p">,</span> <span class="s1">&#39;}&#39;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">fermante</span><span class="p">(</span><span class="n">c</span><span class="p">):</span>
+    <span class="n">fermantes</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;(&#39;</span><span class="p">:</span> <span class="s1">&#39;)&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;[&#39;</span><span class="p">:</span> <span class="s1">&#39;]&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;{&#39;</span><span class="p">:</span> <span class="s1">&#39;}&#39;</span><span class="p">,</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">fermantes</span><span class="p">[</span><span class="n">c</span><span class="p">]</span>
+    
+<span class="k">def</span> <span class="nf">bonParenthesage</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="n">pile</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">s</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">estOuvrante</span><span class="p">(</span><span class="n">c</span><span class="p">):</span>
+            <span class="n">pile</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="p">(</span><span class="n">estFermante</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+                <span class="ow">and</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">pile</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
+                     <span class="ow">or</span> <span class="n">fermante</span><span class="p">(</span><span class="n">pile</span><span class="o">.</span><span class="n">pop</span><span class="p">())</span> <span class="o">!=</span> <span class="n">c</span><span class="p">)):</span>
+            <span class="k">return</span> <span class="kc">False</span>
+    <span class="k">return</span> <span class="n">pile</span> <span class="o">==</span> <span class="p">[]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">bonParenthesage</span><span class="p">(</span><span class="s1">&#39;[a+(b+c)]&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[7]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>True</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">bonParenthesage</span><span class="p">(</span><span class="s1">&#39;[a+b+c)]&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[9]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>False</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">bonParenthesage</span><span class="p">(</span><span class="s1">&#39;[a+(b+c]&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[10]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>False</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">bonParenthesage</span><span class="p">(</span><span class="s1">&#39;[a+(b+c])&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[11]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>False</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">bonParenthesage</span><span class="p">(</span><span class="s1">&#39;((((&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[12]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>False</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Calculette">Calculette<a class="anchor-link" href="#Calculette">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">estOperateur</span><span class="p">(</span><span class="n">c</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">c</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;+&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="s1">&#39;*&#39;</span><span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">calcul</span><span class="p">(</span><span class="n">op</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">op</span> <span class="o">==</span> <span class="s1">&#39;+&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">n</span> <span class="o">+</span> <span class="n">m</span>
+    <span class="k">elif</span> <span class="n">op</span> <span class="o">==</span> <span class="s1">&#39;-&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">n</span> <span class="o">-</span> <span class="n">m</span>
+    <span class="k">elif</span> <span class="n">op</span> <span class="o">==</span> <span class="s1">&#39;/&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">n</span> <span class="o">/</span> <span class="n">m</span>
+    <span class="k">elif</span> <span class="n">op</span> <span class="o">==</span> <span class="s1">&#39;*&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">n</span> <span class="o">*</span> <span class="n">m</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Mauvais opérateur&#39;</span><span class="p">)</span>
+        
+<span class="k">def</span> <span class="nf">evaluation</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="n">acc_nombre</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>         <span class="c1"># un accumulateur (pile) pour accumuler les chiffres d&#39;un nombre</span>
+    <span class="n">acc_resultat</span> <span class="o">=</span> <span class="p">[]</span>       <span class="c1"># l&#39;accumulateur (pile) qui contient les operandes</span>
+    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">s</span><span class="p">:</span>
+        <span class="k">if</span> <span class="s1">&#39;0&#39;</span> <span class="o">&lt;=</span> <span class="n">c</span> <span class="o">&lt;=</span> <span class="s1">&#39;9&#39;</span><span class="p">:</span>
+            <span class="n">acc_nombre</span> <span class="o">+=</span> <span class="n">c</span>
+        <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">acc_nombre</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">acc_resultat</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">acc_nombre</span><span class="p">))</span>
+            <span class="n">acc_nombre</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+        <span class="k">if</span> <span class="n">estOperateur</span><span class="p">(</span><span class="n">c</span><span class="p">):</span>
+            <span class="n">b</span> <span class="o">=</span> <span class="n">acc_resultat</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+            <span class="n">a</span> <span class="o">=</span> <span class="n">acc_resultat</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+            <span class="n">acc_resultat</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">calcul</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">))</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">acc_resultat</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">acc_resultat</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;Pile non vide&quot;</span>
+    <span class="k">return</span> <span class="n">res</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">evaluation</span><span class="p">(</span><span class="s1">&#39;5 8 3 - * 3 * 3 1 - 2 * 3 / +&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[25]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>76.33333333333333</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[29]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">evaluation</span><span class="p">(</span><span class="s1">&#39;450 10 + 20 -&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[29]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>440</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[30]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">evaluation</span><span class="p">(</span><span class="s1">&#39;400 -&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">IndexError</span>                                Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-30-3bb5951717d1&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>evaluation<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;400 -&#39;</span><span class="ansi-blue-fg">)</span>
+
+<span class="ansi-green-fg">&lt;ipython-input-24-7637221d4b76&gt;</span> in <span class="ansi-cyan-fg">evaluation</span><span class="ansi-blue-fg">(s)</span>
+<span class="ansi-green-intense-fg ansi-bold">     25</span>         <span class="ansi-green-fg">if</span> estOperateur<span class="ansi-blue-fg">(</span>c<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">     26</span>             b <span class="ansi-blue-fg">=</span> acc_resultat<span class="ansi-blue-fg">.</span>pop<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg">---&gt; 27</span><span class="ansi-red-fg">             </span>a <span class="ansi-blue-fg">=</span> acc_resultat<span class="ansi-blue-fg">.</span>pop<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">     28</span>             acc_resultat<span class="ansi-blue-fg">.</span>append<span class="ansi-blue-fg">(</span>calcul<span class="ansi-blue-fg">(</span>c<span class="ansi-blue-fg">,</span> a<span class="ansi-blue-fg">,</span> b<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">     29</span>     res <span class="ansi-blue-fg">=</span> acc_resultat<span class="ansi-blue-fg">.</span>pop<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
+
+<span class="ansi-red-fg">IndexError</span>: pop from empty list</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[32]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">evaluation</span><span class="p">(</span><span class="s1">&#39;400 10 10 +&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">AssertionError</span>                            Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-32-e800a5ede2ec&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>evaluation<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;400 10 10 +&#39;</span><span class="ansi-blue-fg">)</span>
+
+<span class="ansi-green-fg">&lt;ipython-input-24-7637221d4b76&gt;</span> in <span class="ansi-cyan-fg">evaluation</span><span class="ansi-blue-fg">(s)</span>
+<span class="ansi-green-intense-fg ansi-bold">     28</span>             acc_resultat<span class="ansi-blue-fg">.</span>append<span class="ansi-blue-fg">(</span>calcul<span class="ansi-blue-fg">(</span>c<span class="ansi-blue-fg">,</span> a<span class="ansi-blue-fg">,</span> b<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">     29</span>     res <span class="ansi-blue-fg">=</span> acc_resultat<span class="ansi-blue-fg">.</span>pop<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg">---&gt; 30</span><span class="ansi-red-fg">     </span><span class="ansi-green-fg">assert</span> len<span class="ansi-blue-fg">(</span>acc_resultat<span class="ansi-blue-fg">)</span> <span class="ansi-blue-fg">==</span> <span class="ansi-cyan-fg">0</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#34;Pile non vide&#34;</span>
+<span class="ansi-green-intense-fg ansi-bold">     31</span>     <span class="ansi-green-fg">return</span> res
+
+<span class="ansi-red-fg">AssertionError</span>: Pile non vide</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+ 
+
