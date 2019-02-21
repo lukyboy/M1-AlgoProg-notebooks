@@ -1,0 +1,483 @@
+
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Exercice-2.1">Exercice 2.1<a class="anchor-link" href="#Exercice-2.1">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">Ville</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">liste</span><span class="p">):</span>
+        <span class="c1"># &quot;Explosion&quot; de listes, équivalent à:</span>
+        <span class="c1">#</span>
+        <span class="c1">#     self.nom = liste[0]</span>
+        <span class="c1">#     self.dept = liste[1]</span>
+        <span class="c1">#     ...</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nom</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dept</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pop</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sup</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">rang</span> <span class="o">=</span> <span class="n">liste</span>
+        
+    <span class="k">def</span> <span class="nf">getRang</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rang</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">getSuperficie</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sup</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">afficherNom</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nom</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">afficherVille</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># &quot;Interpolation&quot; de chaînes de caractères par l&#39;opérateur %</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> (</span><span class="si">%d</span><span class="s2">), Pop.: </span><span class="si">%d</span><span class="s2">, Sup.: </span><span class="si">%f</span><span class="s2">km²&quot;</span>
+              <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nom</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dept</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pop</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sup</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ville</span> <span class="o">=</span> <span class="n">Ville</span><span class="p">([</span><span class="s2">&quot;Maisons-Alfort&quot;</span><span class="p">,</span> <span class="mi">94</span><span class="p">,</span> <span class="mi">51091</span><span class="p">,</span> <span class="mf">5.4</span><span class="p">,</span> <span class="mi">100</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ville</span><span class="o">.</span><span class="n">getRang</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[3]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>100</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ville</span><span class="o">.</span><span class="n">getSuperficie</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[4]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>5.4</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ville</span><span class="o">.</span><span class="n">afficherNom</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Maisons-Alfort
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ville</span><span class="o">.</span><span class="n">afficherVille</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Maisons-Alfort (94), Pop.: 51091, Sup.: 5.400000km²
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Exercices-3.1-2">Exercices 3.1-2<a class="anchor-link" href="#Exercices-3.1-2">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">Noeud</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">liste</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gauche</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">droite</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ville</span> <span class="o">=</span> <span class="n">Ville</span><span class="p">(</span><span class="n">liste</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">inserer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">liste</span><span class="p">):</span>
+        <span class="n">tmp</span> <span class="o">=</span> <span class="n">Ville</span><span class="p">(</span><span class="n">liste</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">tmp</span><span class="o">.</span><span class="n">getRang</span><span class="p">()</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">ville</span><span class="o">.</span><span class="n">getRang</span><span class="p">():</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">gauche</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">gauche</span><span class="o">.</span><span class="n">inserer</span><span class="p">(</span><span class="n">liste</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">gauche</span> <span class="o">=</span> <span class="n">Noeud</span><span class="p">(</span><span class="n">liste</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">ville</span><span class="o">.</span><span class="n">getRang</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">tmp</span><span class="o">.</span><span class="n">getRang</span><span class="p">():</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">droite</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">droite</span><span class="o">.</span><span class="n">inserer</span><span class="p">(</span><span class="n">liste</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">droite</span> <span class="o">=</span> <span class="n">Noeud</span><span class="p">(</span><span class="n">liste</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">afficherArbre</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Parcours &quot;infixe&quot; = gauche - racine - droite</span>
+<span class="sd">        (donc croissant)</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">gauche</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">gauche</span><span class="o">.</span><span class="n">afficherArbre</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ville</span><span class="o">.</span><span class="n">afficherNom</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">droite</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">droite</span><span class="o">.</span><span class="n">afficherArbre</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">liste</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Maisons-Alfort&quot;</span><span class="p">,</span> <span class="mi">94</span><span class="p">,</span> <span class="mi">51091</span><span class="p">,</span> <span class="mf">5.4</span><span class="p">,</span> <span class="mi">100</span><span class="p">]</span>
+<span class="n">noeud</span> <span class="o">=</span> <span class="n">Noeud</span><span class="p">(</span><span class="n">liste</span><span class="p">)</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;villes.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fichier</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">ligne</span> <span class="ow">in</span> <span class="n">fichier</span><span class="p">:</span>
+        <span class="n">liste</span> <span class="o">=</span> <span class="n">ligne</span><span class="o">.</span><span class="n">rsplit</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
+        <span class="n">noeud</span><span class="o">.</span><span class="n">inserer</span><span class="p">(</span><span class="n">liste</span><span class="p">)</span>
+
+<span class="n">noeud</span><span class="o">.</span><span class="n">afficherArbre</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Paris
+Marseille
+Lyon
+Toulouse
+Nice
+Nantes
+Strasbourg
+Montpellier
+Bordeaux
+Rennes
+Le-Havre
+Reims
+Lille
+Saint-Étienne
+Toulon
+Grenoble
+Angers
+Dijon
+Brest
+Le-Mans
+Clermont-Ferrand
+Amiens
+Aix-en-Provence
+Limoges
+Nîmes
+Tours
+Saint-Denis
+Villeurbanne
+Metz
+Besançon
+Caen
+Orléans
+Mulhouse
+Rouen
+Boulogne-Billancourt
+Perpignan
+Nancy
+Roubaix
+Fort-de-France
+Argenteuil
+Tourcoing
+Montreuil
+Saint-Paul
+Saint-Denis
+Avignon
+Versailles
+Nanterre
+Poitiers
+Créteil
+Aulnay-sous-Bois
+Vitry-sur-Seine
+Pau
+Calais
+La-Rochelle
+Colombes
+Asnières-sur-Seine
+Champigny-sur-Marne
+Rueil-Malmaison
+Saint-Maur-des-Fossés
+Antibes
+Bourges
+Dunkerque
+Courbevoie
+Béziers
+Saint-Pierre
+Cannes
+Saint-Nazaire
+Colmar
+Villeneuve-d&#39;Ascq
+Valence
+Quimper
+Aubervilliers
+Les-Abymes
+Drancy
+Mérignac
+Troyes
+Le-Tampon
+La-Seyne-sur-Mer
+Neuilly-sur-Seine
+Antony
+Lorient
+Saint-Quentin
+Noisy-le-Grand
+Sarcelles
+Niort
+Pessac
+Vénissieux
+Chambéry
+Charleville-Mézières
+Beauvais
+Cergy
+Levallois-Perret
+Cholet
+Ajaccio
+Issy-les-Moulineaux
+Montauban
+Vannes
+Hyères
+Évreux
+Maisons-Alfort
+Laval
+Ivry-sur-Seine
+Fontenay-sous-Bois
+Saint-Malo
+Arles
+Belfort
+Cayenne
+Annecy
+Clichy
+Sartrouville
+Chalon-sur-Saône
+Pantin
+Châteauroux
+Évry
+Meaux
+La-Roche-sur-Yon
+Brive-la-Gaillarde
+Blois
+Clamart
+Villejuif
+Châlons-en-Champagne
+Sevran
+Le-Blanc-Mesnil
+Bondy
+Fréjus
+Épinay-sur-Seine
+Narbonne
+Tarbes
+Albi
+Saint-Brieuc
+Chelles
+Boulogne-sur-Mer
+Bobigny
+Carcassonne
+Cagnes-sur-Mer
+Grasse
+Saint-Herblain
+Meudon
+Mantes-la-Jolie
+Vincennes
+Martigues
+Saint-Louis
+Castres
+Saint-André
+Angoulême
+Douai
+Wattrelos
+Aubagne
+Gennevilliers
+Le-Cannet
+Montluçon
+Valenciennes
+Caluire-et-Cuire
+Compiègne
+Saint-Priest
+Nevers
+Puteaux
+Thionville
+Bourg-en-Bresse
+Arras
+Chartres
+Bayonne
+Garges-lès-Gonesse
+Saint-Ouen
+Suresnes
+Sète
+Corbeil-Essonnes
+Alès
+Vaulx-en-Velin
+Rosny-sous-Bois
+Istres
+Roanne
+Le-Port
+Saint-Germain-en-Laye
+Bastia
+Auxerre
+Montrouge
+Massy
+Saint-Chamond
+Bron
+Noisy-le-Sec
+Livry-Gargan
+Talence
+Bagneux
+Marcq-en-Baroeul
+Salon-de-Provence
+Gagny
+Vitrolles
+Joué-lès-Tours
+Alfortville
+Gap
+Savigny-sur-Orge
+Lens
+Poissy
+Épinal
+Saint-Martin-d&#39;Hères
+Melun
+Rezé
+Le-Lamentin
+La-Courneuve
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+ 
+
