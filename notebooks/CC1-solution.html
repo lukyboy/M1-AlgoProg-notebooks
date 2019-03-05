@@ -165,7 +165,7 @@
 <div class="text_cell_render border-box-sizing rendered_html">
 <ul>
 <li><p>Combien de comparaisons effectue l'algorithme, en termes de la longueur $n$ de la liste en entrée, au pire cas?</p>
-<p><em>Le nombre de comparaisons dépend uniquement de $n$, et non pas du contenu de la liste. Il est évident qu'à la première itération on fait $n$ comparaisons, ensuite $n-1$, etc., pour un total de $(n^2+1)/2 ∈ O(n^2)$ comparaisons. Avec une petite modification aux bornes de la deuxième boucle, l'algorithme reste correcte et fait $n$ comparaisons en moins, ce qui ne change pas l'asymptotique.</em></p>
+<p><em>Le nombre de comparaisons dépend uniquement de $n$, et non pas du contenu de la liste. Il est évident qu'à la première itération on fait $n$ comparaisons, ensuite $n-1$, etc., pour un total de $n(n+1)/2 ∈ O(n^2)$ comparaisons. Avec une petite modification aux bornes de la deuxième boucle, l'algorithme reste correct et fait $n$ comparaisons en moins, ce qui ne change pas l'asymptotique.</em></p>
 </li>
 <li><p>Combien de comparaisons dans le meilleur cas? <em>Tout est dans la réponse précédente</em></p>
 </li>
@@ -245,7 +245,7 @@
 <div class="text_cell_render border-box-sizing rendered_html">
 <ul>
 <li><p>Quelle est la complexité de l'algorithme, en termes de la longueur $n$ de la liste en entrée?</p>
-<p><em>Notons $M(n)$ la complexité de l'algorithme, alors $M(n) ≈ 2M(n/2) + c$ pour une constante $c$, et $M(1)=d$ pour une autre constante $d$. En déroulant la récurrence, on obtient $M(n) = c + 2c + 4c + \cdots + nd$, et on peut borner la somme géométrique par $2^{\lceil\log_2 n\rceil c}$, donc $M(n) ∈ O(n)$.</em></p>
+<p><em>Notons $M(n)$ la complexité de l'algorithme, alors $M(n) ≈ 2M(n/2) + c$ pour une constante $c$, et $M(1)=d$ pour une autre constante $d$. En déroulant la récurrence, on obtient $M(n) = c + 2c + 4c + \cdots + nd$, et on peut borner la somme géométrique par $2^{\lceil\log_2 n\rceil} c$, donc $M(n) ∈ O(n)$.</em></p>
 </li>
 </ul>
 
@@ -269,14 +269,29 @@
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">minimum2</span><span class="p">(</span><span class="n">liste</span><span class="p">):</span>
     <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">liste</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
-        <span class="k">return</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">liste</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">liste</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">liste</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">liste</span>
+    <span class="k">elif</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">liste</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">liste</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
+            <span class="k">return</span> <span class="n">liste</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">liste</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">liste</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">a1</span><span class="p">,</span> <span class="n">a2</span> <span class="o">=</span> <span class="n">minimum2</span><span class="p">(</span><span class="n">liste</span><span class="p">[:</span><span class="n">n</span><span class="o">//</span><span class="mi">2</span><span class="p">])</span>
-        <span class="n">b1</span><span class="p">,</span> <span class="n">b2</span> <span class="o">=</span> <span class="n">minimum2</span><span class="p">(</span><span class="n">liste</span><span class="p">[</span><span class="n">n</span><span class="o">//</span><span class="mi">2</span><span class="p">:])</span>
-        <span class="k">return</span> <span class="nb">sorted</span><span class="p">((</span><span class="n">a1</span><span class="p">,</span><span class="n">a2</span><span class="p">,</span><span class="n">b1</span><span class="p">,</span><span class="n">b2</span><span class="p">))[:</span><span class="mi">2</span><span class="p">]</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">minimum2</span><span class="p">(</span><span class="n">liste</span><span class="p">[:</span><span class="n">n</span><span class="o">//</span><span class="mi">2</span><span class="p">])</span>  <span class="c1"># a peut éventuellement être de longueur 1</span>
+        <span class="n">b</span> <span class="o">=</span> <span class="n">minimum2</span><span class="p">(</span><span class="n">liste</span><span class="p">[</span><span class="n">n</span><span class="o">//</span><span class="mi">2</span><span class="p">:])</span>  <span class="c1"># mais pas b</span>
+        
+        <span class="c1"># inpsiré par le merge sort</span>
+        <span class="n">mins</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">ai</span> <span class="o">=</span> <span class="n">bi</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">while</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">mins</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">ai</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="ow">and</span> <span class="n">a</span><span class="p">[</span><span class="n">ai</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">b</span><span class="p">[</span><span class="n">bi</span><span class="p">]:</span>
+                <span class="n">mins</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">ai</span><span class="p">])</span>
+                <span class="n">ai</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">mins</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="n">bi</span><span class="p">])</span>
+                <span class="n">bi</span> <span class="o">+=</span> <span class="mi">1</span>
+        
+        <span class="k">return</span> <span class="n">mins</span>
 </pre></div>
 
     </div>
@@ -309,7 +324,7 @@
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>[-927, -914]</pre>
+<pre>[-991, -966]</pre>
 </div>
 
 </div>
@@ -399,37 +414,37 @@
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>3 [648, 876, 343, -485]
-101 [279, -49, -230]
-226 [124, -124, -628]
-673 [689, -539, 732]
-1791 [-363, 743, 666]
-2209 [-643, -11, -11]
-2300 [266]
-2376 [-865, -83, -83, 830, -357]
-2400 [-972]
-2500 [-669, 338, 375]
-2891 [579]
-3573 [-262, -374]
-4698 [-609, 289, 803, 609]
-5098 [434, -764]
-5254 [371]
-5650 [103, -187, 399, -956]
-6996 [482, -921]
-7025 [825, 43]
-7305 [-649, -903, 649, -226]
-7727 [591, 767, -591, 326, -199, 664, 264]
-7826 [284, 935, -478, 536, -214]
-8132 [-385, 385, 608, -608]
-8785 [-726, 708, -542, -143]
-8796 [304, -697, -329, -320, -320]
-9221 [-867, 545, 524]
-9239 [-852, -588, -514, 583, -642]
-9460 [917, 812, -792, -87, 721]
-9680 [91, 975, -438, 50]
-9681 [518, 19]
-9682 [479, 213, -479]
-9803 [598, 750]
+<pre>3 [-195, 516, 161, -229, 938, -100]
+101 [-23]
+226 [-680]
+673 [157, 539, 689, -941, 511, 711]
+1791 [363, 913, -913, -743]
+2209 [188]
+2300 [3, -30, 413]
+2376 [986, 564]
+2400 [14]
+2500 [836, 299, -637]
+2891 [940, 595, 999, -634, -971, -501, 336]
+3573 [891, 206, -891, 757, -311, -431, 416]
+4698 [527]
+5098 [-567]
+5254 [-108, -325, -953, 617, -256]
+5650 [131, 543, 45]
+6996 [761, 167, -333, -112]
+7025 [-948, 442, -141]
+7305 [-288, 903, 510, -288]
+7727 [-767, 142, -692, 326, 494, 328]
+7826 [-874, 21]
+8132 [215, -571]
+8785 [366, 278, 189]
+8796 [-472, -849, 934]
+9239 [-236, -642, -588]
+9456 [466, -645]
+9460 [717, -722, -294]
+9680 [-136]
+9681 [295, 994, -269, 390, -390]
+9682 [400, 69, 644, -605]
+9803 [-394, -372, -75]
 </pre>
 </div>
 </div>
@@ -444,7 +459,7 @@
 <ul>
 <li>Définissez une fonction <code>max_len</code> donnant la longueur maximale d'une case de la table;</li>
 <li>Définissez une fonction <code>stats</code> comptant, pour chaque $n$ entre $0$ et <code>max_len</code>, combien de cases contiennent $n$ éléments.</li>
-<li>Modifiez la fonction <code>H</code> afin d'avoir une meilleur repartition dans la table de hachage</li>
+<li>Modifiez la fonction <code>H</code> afin d'avoir une meilleure repartition dans la table de hachage</li>
 </ul>
 
 </div>
@@ -539,7 +554,7 @@
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>{0: 9870, 4: 7, 3: 8, 1: 4, 5: 5, 2: 6, 7: 1}</pre>
+<pre>{0: 9870, 6: 3, 1: 7, 4: 4, 3: 9, 2: 4, 7: 2, 5: 2}</pre>
 </div>
 
 </div>
@@ -576,101 +591,101 @@
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>2 [-432]
-365 [-124]
-549 [-791]
-916 [-24]
-928 [459]
-943 [377]
-1028 [-577]
-1077 [498]
-1164 [-599]
-1431 [-162]
-1493 [949]
-1520 [824]
-1679 [889]
-1762 [937]
-1801 [203]
-1962 [-453]
-2368 [-930, -930]
-2379 [12]
-2426 [199]
-2501 [394]
-2717 [846]
-2943 [-495]
-2994 [-340]
-3401 [225]
-3445 [767]
-3472 [-188]
-3476 [538]
-3594 [475, 475]
-3669 [603]
-3693 [-36]
-3731 [828]
-4078 [556]
-4116 [638]
-4392 [-48]
+<pre>328 [-460]
+462 [-645]
+463 [-52]
+469 [-921]
+555 [632]
+628 [467]
+630 [-753]
+661 [686]
+777 [3, -116]
+820 [856]
+836 [-186]
+863 [946]
+893 [896]
+1038 [875]
+1068 [-373]
+1117 [-273]
+1260 [-980]
+1283 [-284]
+1565 [473]
+1695 [-455]
+1772 [268]
+1851 [821]
+1971 [765]
+1995 [-560]
+2002 [305]
+2107 [-772]
+2183 [-962, -962]
+2303 [-304]
+2526 [-825]
+2614 [105]
+2672 [232]
+2941 [178]
+3084 [665]
+3416 [606]
+3507 [979]
+3572 [487]
+3583 [678]
+3585 [950]
+3680 [958]
+3703 [-496]
+3715 [-933]
+3726 [-734]
+3908 [634]
+4007 [371]
+4191 [905]
+4252 [-337]
+4380 [660]
+4426 [428]
 4529 [-568]
-4572 [-630]
-4625 [983]
-4635 [609, 609]
-4693 [35]
-4703 [-279]
-4760 [-752]
+4635 [609]
 4761 [117]
-4772 [435]
-4907 [-469]
-5050 [-212]
-5125 [-890]
-5320 [699]
+4939 [166]
+5056 [555]
+5090 [142]
+5384 [-948]
+5393 [-76]
 5397 [-871]
-5488 [-918]
-5550 [-316, -316]
-5576 [-754]
-5623 [662]
-5646 [-533]
-5775 [-74]
-5846 [83]
+5460 [-332]
+5466 [-775]
 5926 [-329]
-5960 [446]
+5938 [-153]
+6007 [-293]
 6079 [-360]
-6238 [573]
-6288 [-245]
-6346 [876]
-6361 [-443]
-6475 [63]
-6486 [-471]
-6648 [-762]
-6726 [-750]
-6831 [47]
-6942 [785]
-7071 [-998, 332]
-7082 [-93]
-7173 [809]
+6167 [778]
+6201 [-888]
+6238 [-277]
+6275 [758]
+6295 [-864]
+6699 [-494]
+6839 [-716]
+6872 [241]
+6884 [-901]
+6901 [854]
+6943 [119]
+7053 [630]
 7339 [-769]
-7345 [-435]
-7509 [-287]
-7523 [-37]
-7632 [-949]
-7808 [-796]
-7821 [398]
-7914 [-855]
-7963 [637]
-7999 [627]
-8021 [604]
-8113 [-984]
-8256 [-760]
-8287 [-606]
-8781 [108]
-8942 [-115]
-9024 [-319]
-9164 [798]
-9541 [51]
-9625 [-151]
-9779 [204]
-9811 [-467]
-9814 [-756]
-9823 [-286]
+7439 [752]
+7522 [408]
+7614 [456]
+7620 [163, 163]
+7662 [-35]
+7786 [-342]
+7914 [801]
+8467 [-956]
+8539 [-708]
+8742 [143]
+8801 [802]
+8804 [578]
+8892 [-945]
+8950 [-147]
+9094 [704]
+9113 [-717]
+9539 [-105, -105]
+9705 [-411, -411]
+9841 [-686]
 </pre>
 </div>
 </div>
@@ -1263,7 +1278,7 @@
 <li><p>Décrire la complexité de la méthode. Est-elle optimale?</p>
 <p><em>Il est naturel de donner la complexité en termes de la longueur $n$ de l'expression en entrée, cependant une mesure plus précise peut être donnée en termes du nombre $b$ d'opérations binaires dans l'expression, et il est clair que $b∈\Theta(n)$.</em></p>
 <p><em>La fonction <code>parse</code> ne fait qu'une passe linéaire sur la chaîne de caractères, et pour chaque itération de la boucle elle effectue $O(1)$ opérations, elle a donc complexité $O(n)=O(b)$.</em></p>
-<p><em>La fonction <code>permutations</code> donne en sortie $x$ chaînes de caractères de longueur $n$, sa complexité ne peut donc pas être moindre que $\Omega(xn)$. Pour déterminer $x$, on remarque qu'à chaque appel récursif la taille de la sortie double, et que le nombre d'appel récursifs est égal au nombre $b$ d'opérations binaires, on a donc une borne inférieure de $\Omega(2^b n) = \Omega(2^b b)$.</em></p>
+<p><em>La fonction <code>permutations</code> donne en sortie $x$ chaînes de caractères de longueur $n$, sa complexité ne peut donc pas être moindre que $\Omega(xn)$. Pour déterminer $x$, on remarque qu'à chaque appel récursif la taille de la sortie double, et que le nombre d'appels récursifs est égal au nombre $b$ d'opérations binaires, on a donc une borne inférieure de $\Omega(2^b n) = \Omega(2^b b)$.</em></p>
 <p><em>On vérifie que la complexité est exactement $\Theta(2^b b)$: notons $P(B)$ le coût de la fonction <code>permutation</code> sur un arbre contenant $B$ operations binaires. Si l'arbre est réduit à une feuille de type <code>Var</code>, alors $B=0$ et $P(0)=\Theta(1)$; sinon $P(B) = 2P(B-1) +c(2^{B-1})^2(B-1)$ pour une constante $c$. En déroulant la récurrence on obtient la borne voulue.</em></p>
 </li>
 </ul>
