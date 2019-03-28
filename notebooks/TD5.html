@@ -121,7 +121,7 @@
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>4314334462842797946</pre>
+<pre>7418075971660019129</pre>
 </div>
 
 </div>
@@ -322,7 +322,7 @@
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">opt</span><span class="p">(</span><span class="n">seq</span><span class="p">):</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">2</span><span class="p">:</span>
-        <span class="k">return</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;(X·X)&#39;</span>
+        <span class="k">return</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;X&#39;</span>
     <span class="n">m</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&quot;inf&quot;</span><span class="p">)</span>  <span class="c1"># Valeur spéciale &quot;infini&quot; (Python-only)</span>
     <span class="n">shape</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
@@ -362,8 +362,8 @@
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 157 µs, sys: 30 µs, total: 187 µs
-Wall time: 189 µs
+<pre>CPU times: user 192 µs, sys: 33 µs, total: 225 µs
+Wall time: 229 µs
 </pre>
 </div>
 </div>
@@ -376,7 +376,7 @@ Wall time: 189 µs
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>(2010, &#39;(((X·X)·(X·X))·(((X·X)·(X·X))·((X·X)·(X·X))))&#39;)</pre>
+<pre>(2010, &#39;((X·X)·((X·X)·(X·X)))&#39;)</pre>
 </div>
 
 </div>
@@ -441,8 +441,8 @@ Wall time: 189 µs
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 106 µs, sys: 0 ns, total: 106 µs
-Wall time: 109 µs
+<pre>CPU times: user 99 µs, sys: 17 µs, total: 116 µs
+Wall time: 120 µs
 </pre>
 </div>
 </div>
@@ -510,7 +510,7 @@ Wall time: 109 µs
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>[97, 95, 16, 4, 14, 94, 66, 41, 25, 57, 45, 81, 8, 26, 75]</pre>
+<pre>[50, 22, 63, 35, 75, 78, 67, 2, 84, 73, 29, 3, 53, 64, 97]</pre>
 </div>
 
 </div>
@@ -541,8 +541,8 @@ Wall time: 109 µs
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 1.14 s, sys: 0 ns, total: 1.14 s
-Wall time: 1.14 s
+<pre>CPU times: user 1.42 s, sys: 0 ns, total: 1.42 s
+Wall time: 1.42 s
 </pre>
 </div>
 </div>
@@ -555,8 +555,7 @@ Wall time: 1.14 s
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>(158808,
- &#39;(((X·X)·((X·X)·(X·X)))·(((((((((((X·X)·(X·X))·(X·X))·(X·X))·(X·X))·(X·X))·(X·X))·(X·X))·(X·X))·(X·X))·(X·X)))&#39;)</pre>
+<pre>(82674, &#39;((X·(X·(X·(X·(X·(X·X))))))·((((((X·X)·X)·X)·X)·X)·X))&#39;)</pre>
 </div>
 
 </div>
@@ -588,8 +587,8 @@ Wall time: 1.14 s
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 247 µs, sys: 906 µs, total: 1.15 ms
-Wall time: 1.16 ms
+<pre>CPU times: user 1.37 ms, sys: 0 ns, total: 1.37 ms
+Wall time: 1.37 ms
 </pre>
 </div>
 </div>
@@ -602,7 +601,7 @@ Wall time: 1.16 ms
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>158808</pre>
+<pre>82674</pre>
 </div>
 
 </div>
@@ -675,24 +674,24 @@ Wall time: 1.16 ms
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>   97      95      16      4       14      94      66      41      25      57      45      81      8       26      75   
+<pre>   50      22      63      35      75      78      67      2       84      73      29      3       53      64      97   
 ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
        0       0       0       0       0       0       0       0       0       0       0       0       0       0    
-         147440   6080    896     5264   86856   254364  67650   58425   64125   207765  29160   16848   15600  
-             42940   11400   11280   30080   124740  222750  161700  110250  155250  49680   38520   64200  
-                 48372   47064   34304   40904   139090  356700  206025  238275  61080   61536   71760  
-                     84676   61240   43528   45004   159040  392625  356550  69280   66280   99480  
-                         98628   62564   46604   50704   194950  568350  90928   77808   91680  
-                             99752   60584   54352   60964   245980  140560  104656  109480 
-                                 97644   78444   63844   75544   151088  160112  146128 
-                                     115760  84144   80728   78136   154000  212560 
-                                         121364  112404  78648   78968   175088 
-                                             149912  87256   80632   86768  
-                                                 124180  94928   91568  
-                                                     131996  121348 
-                                                         158808 
-CPU times: user 1.05 ms, sys: 0 ns, total: 1.05 ms
-Wall time: 916 µs
+         69300   48510   165375  204750  391950  10452   11256   12264   177828   6351    4611   10176   329024 
+             87010   106260  376740  387660  22152   23556   22046   16498   24747   17958   15744   28800  
+                 188760  234960  535395  27402   34752   34104   20384   16672   38103   30543   37239  
+                     320760  349932  31812   33282   45366   31474   17074   16990   51051   56394  
+                         423632  34584   42396   44776   43000   27592   24092   23774   77991  
+                             36784   38280   53274   45930   39274   35710   32350   36190  
+                                 45184   50060   51964   44284   47092   44210   49188  
+                                     56348   52358   48862   48102   55526   61774  
+                                         56182   51388   55480   55656   72892  
+                                             53756   53906   63650   70382  
+                                                 59074   61174   80224  
+                                                     66958   75042  
+                                                         82674  
+CPU times: user 0 ns, sys: 1.14 ms, total: 1.14 ms
+Wall time: 922 µs
 </pre>
 </div>
 </div>
@@ -705,7 +704,7 @@ Wall time: 916 µs
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>158808</pre>
+<pre>82674</pre>
 </div>
 
 </div>
@@ -746,10 +745,10 @@ Wall time: 916 µs
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 12 ms, sys: 0 ns, total: 12 ms
-Wall time: 11.9 ms
-CPU times: user 1.94 ms, sys: 0 ns, total: 1.94 ms
-Wall time: 1.95 ms
+<pre>CPU times: user 10.5 ms, sys: 4.17 ms, total: 14.7 ms
+Wall time: 14.4 ms
+CPU times: user 2.57 ms, sys: 0 ns, total: 2.57 ms
+Wall time: 2.57 ms
 </pre>
 </div>
 </div>
@@ -762,7 +761,7 @@ Wall time: 1.95 ms
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>462044</pre>
+<pre>364080</pre>
 </div>
 
 </div>
