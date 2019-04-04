@@ -1,0 +1,920 @@
+
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Algorithme-na&#239;f">Algorithme na&#239;f<a class="anchor-link" href="#Algorithme-na&#239;f">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">match</span><span class="p">(</span><span class="n">string</span><span class="p">,</span> <span class="n">pattern</span><span class="p">):</span>
+    <span class="n">matches</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">string</span><span class="p">)):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">pattern</span><span class="p">)):</span>
+            <span class="k">if</span> <span class="n">string</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="n">j</span><span class="p">]</span> <span class="o">!=</span> <span class="n">pattern</span><span class="p">[</span><span class="n">j</span><span class="p">]:</span>
+                <span class="k">break</span>
+        <span class="k">else</span><span class="p">:</span>  <span class="c1"># for ... else: Cette branche ne s&#39;exécute que</span>
+               <span class="c1">#               si on n&#39;est pas sortis du for</span>
+               <span class="c1">#               par un break</span>
+            <span class="n">matches</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">matches</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>On télécharge dans la variable <code>genome</code> le génome de l'E. coli</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">requests</span> <span class="k">import</span> <span class="n">get</span>
+<span class="kn">from</span> <span class="nn">gzip</span> <span class="k">import</span> <span class="n">decompress</span>
+
+<span class="n">req</span> <span class="o">=</span> <span class="n">get</span><span class="p">(</span><span class="s1">&#39;http://defeo.lu/M1-AlgoProg/tds/ecoli.gz&#39;</span><span class="p">)</span>
+<span class="n">genome</span> <span class="o">=</span> <span class="n">decompress</span><span class="p">(</span><span class="n">req</span><span class="o">.</span><span class="n">content</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">()[</span><span class="mi">71</span><span class="p">:]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">time</span> m = match(genome, &#39;GATTACA&#39;)
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>CPU times: user 2.44 s, sys: 0 ns, total: 2.44 s
+Wall time: 2.44 s
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">m</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[4]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[23254,
+ 80864,
+ 155458,
+ 181444,
+ 262735,
+ 313586,
+ 316375,
+ 322262,
+ 357439,
+ 386155,
+ 392966,
+ 393371,
+ 479364,
+ 481239,
+ 498552,
+ 511721,
+ 516538,
+ 541301,
+ 541503,
+ 564697,
+ 567926,
+ 569904,
+ 602022,
+ 605460,
+ 634557,
+ 638760,
+ 703856,
+ 713982,
+ 732147,
+ 736486,
+ 736866,
+ 738133,
+ 740543,
+ 757751,
+ 780029,
+ 783601,
+ 805575,
+ 816856,
+ 831159,
+ 841739,
+ 860171,
+ 877581,
+ 894395,
+ 919777,
+ 923017,
+ 933119,
+ 953797,
+ 959900,
+ 998178,
+ 1001183,
+ 1098941,
+ 1099825,
+ 1103333,
+ 1123212,
+ 1134014,
+ 1134921,
+ 1139457,
+ 1151824,
+ 1200846,
+ 1206930,
+ 1210459,
+ 1211165,
+ 1223289,
+ 1235369,
+ 1292565,
+ 1301128,
+ 1322228,
+ 1325600,
+ 1336802,
+ 1340902,
+ 1374809,
+ 1378000,
+ 1394678,
+ 1397355,
+ 1405313,
+ 1408309,
+ 1414001,
+ 1471399,
+ 1480451,
+ 1488567,
+ 1503663,
+ 1512769,
+ 1516963,
+ 1531037,
+ 1531857,
+ 1532267,
+ 1550532,
+ 1580750,
+ 1633194,
+ 1642824,
+ 1649022,
+ 1680615,
+ 1787843,
+ 1790424,
+ 1854854,
+ 1862884,
+ 1915544,
+ 1932774,
+ 1936043,
+ 1983959,
+ 1987662,
+ 2016680,
+ 2033633,
+ 2035141,
+ 2051285,
+ 2051309,
+ 2057723,
+ 2075435,
+ 2086585,
+ 2162995,
+ 2163023,
+ 2171320,
+ 2181108,
+ 2223675,
+ 2348819,
+ 2353465,
+ 2390045,
+ 2419281,
+ 2425829,
+ 2456349,
+ 2471027,
+ 2480156,
+ 2484442,
+ 2496379,
+ 2554389,
+ 2562706,
+ 2563654,
+ 2572154,
+ 2622582,
+ 2623499,
+ 2635135,
+ 2696391,
+ 2751649,
+ 2757990,
+ 2761101,
+ 2773497,
+ 2777927,
+ 2785937,
+ 2807326,
+ 2832691,
+ 2857030,
+ 2862128,
+ 2916278,
+ 2916516,
+ 2924732,
+ 2924835,
+ 2925587,
+ 2926309,
+ 2931246,
+ 2939937,
+ 2949964,
+ 2968925,
+ 2976057,
+ 2979189,
+ 2989053,
+ 2991935,
+ 2992940,
+ 3002372,
+ 3010387,
+ 3020282,
+ 3054417,
+ 3088011,
+ 3088193,
+ 3178318,
+ 3269329,
+ 3284160,
+ 3309440,
+ 3331463,
+ 3334351,
+ 3422081,
+ 3437276,
+ 3449295,
+ 3460257,
+ 3471879,
+ 3501046,
+ 3537156,
+ 3563008,
+ 3612417,
+ 3621756,
+ 3624419,
+ 3624829,
+ 3646313,
+ 3647300,
+ 3657893,
+ 3658048,
+ 3699437,
+ 3738582,
+ 3756673,
+ 3764747,
+ 3779338,
+ 3780480,
+ 3781708,
+ 3793928,
+ 3811497,
+ 3824838,
+ 3832216,
+ 3835518,
+ 3868393,
+ 3936691,
+ 3939175,
+ 3952501,
+ 3986087,
+ 3986361,
+ 4059042,
+ 4164517,
+ 4214888,
+ 4216308,
+ 4222553,
+ 4226992,
+ 4227070,
+ 4240776,
+ 4241414,
+ 4271046,
+ 4288021,
+ 4293803,
+ 4329045,
+ 4362065,
+ 4418558,
+ 4430984,
+ 4437438,
+ 4445266,
+ 4449824,
+ 4480979,
+ 4534174,
+ 4550726,
+ 4552079,
+ 4568705,
+ 4608729,
+ 4616894,
+ 4619359]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Rabin-&#8211;-Karp">Rabin &#8211; Karp<a class="anchor-link" href="#Rabin-&#8211;-Karp">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">rabin_karp</span><span class="p">(</span><span class="n">string</span><span class="p">,</span> <span class="n">pattern</span><span class="p">,</span> <span class="n">mod</span><span class="p">):</span>
+    <span class="c1"># Dictionnaire pour traduction: Alphabet -&gt; Entiers</span>
+    <span class="c1">#</span>
+    <span class="c1"># utiliser un dictionnaire semble être ce qu&#39;il y a de plus efficace en Python</span>
+    <span class="n">pi</span> <span class="o">=</span> <span class="p">{</span> <span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;G&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;T&#39;</span><span class="p">:</span> <span class="mi">3</span> <span class="p">}</span>
+
+    <span class="c1"># Eh, oui, on peut définir des fonctions dans des fonctions en Python!</span>
+    <span class="c1"># Cette fonction ne peut être appellée que à l&#39;intérieur de rabin_karp</span>
+    <span class="k">def</span> <span class="nf">string_to_int</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">s</span><span class="p">:</span>
+            <span class="n">res</span> <span class="o">*=</span> <span class="mi">4</span>
+            <span class="c1"># Les variables locales de la fonction &quot;parent&quot; (ici `pi` et `mod`)</span>
+            <span class="c1"># sont accessibles depuis cette fonction imbriquée</span>
+            <span class="n">res</span> <span class="o">=</span> <span class="p">(</span><span class="n">res</span> <span class="o">+</span> <span class="n">pi</span><span class="p">[</span><span class="n">c</span><span class="p">])</span> <span class="o">%</span> <span class="n">mod</span>
+        <span class="k">return</span> <span class="n">res</span>
+
+    <span class="c1"># Initialisation et test du préfixe</span>
+    <span class="n">matches</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">pattern</span><span class="p">)</span>
+    <span class="n">g</span> <span class="o">=</span> <span class="n">string_to_int</span><span class="p">(</span><span class="n">pattern</span><span class="p">)</span>
+    <span class="n">h</span> <span class="o">=</span> <span class="n">string_to_int</span><span class="p">(</span><span class="n">string</span><span class="p">[:</span><span class="n">m</span><span class="p">])</span>
+    <span class="k">if</span> <span class="n">g</span> <span class="o">==</span> <span class="n">h</span> <span class="ow">and</span> <span class="n">pattern</span> <span class="o">==</span> <span class="n">string</span><span class="p">[:</span><span class="n">m</span><span class="p">]:</span>
+        <span class="n">matches</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    
+    <span class="c1"># pow(a,b,c) calcule efficacement a^b mod c</span>
+    <span class="c1">#</span>
+    <span class="c1"># il semble nécessaire pour la performance de mettre ce précalcul hors de la</span>
+    <span class="c1"># boucle</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="nb">pow</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">mod</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">string</span><span class="p">)</span> <span class="o">-</span> <span class="n">m</span><span class="p">):</span>
+        <span class="c1"># Cela semble être légèrement plus rapide de faire la mise à jour de h</span>
+        <span class="c1"># en une seule ligne, plutôt qu&#39;avec une suite d&#39;instructions.</span>
+        <span class="c1">#</span>
+        <span class="c1"># Aussi, on évite de faire appel à `string_to_int`: les appels aux</span>
+        <span class="c1"># fonctions coûtent cher!</span>
+        <span class="n">h</span> <span class="o">=</span> <span class="p">(</span> <span class="mi">4</span><span class="o">*</span><span class="p">(</span><span class="n">h</span> <span class="o">-</span> <span class="n">pi</span><span class="p">[</span><span class="n">string</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">*</span> <span class="n">t</span><span class="p">)</span> <span class="o">+</span> <span class="n">pi</span><span class="p">[</span><span class="n">string</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="n">m</span><span class="p">]]</span> <span class="p">)</span> <span class="o">%</span> <span class="n">mod</span>
+        <span class="k">if</span> <span class="n">g</span> <span class="o">==</span> <span class="n">h</span> <span class="ow">and</span> <span class="n">pattern</span> <span class="o">==</span> <span class="n">string</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="n">m</span><span class="o">+</span><span class="mi">1</span><span class="p">]:</span>
+            <span class="n">matches</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">matches</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Pas si mal, la perf!</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">time</span> m2 = rabin_karp(genome, &#39;GATTACA&#39;, 2**32 - 1)
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>CPU times: user 1.62 s, sys: 3.92 ms, total: 1.62 s
+Wall time: 1.62 s
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>On vérifie que cela calcule la même sortie que l'algorithme naïf</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">m</span> <span class="o">==</span> <span class="n">m2</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[7]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>True</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>On va faire des tests avec d'autres motifs et paramètres, pour essayer de déterminer les meilleurs paramètres</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">time</span> m2 = rabin_karp(genome, &#39;GATTACA&#39;, 2**16 - 1)
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>CPU times: user 1.74 s, sys: 0 ns, total: 1.74 s
+Wall time: 1.74 s
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">aaaD</span> <span class="o">=</span> <span class="s1">&#39;GTGAATATATCGAACAGTCAGGTTAACAGGCTGCGGCATTTTGTCCGCGCCGGGCTTCGCTCACTGTTCAGGCCGGAGCCACAGACCGCCGTTGAATGGGCGGATGCTAATTACTATCTCCCGAAAGAATCCGCATACCAGGAAGGGCGCTGGGAAACACTGCCCTTTCAGCGGGCCATCATGAATGCGATGGGCAGCGACTACATCCGTGAGGTGAATGTGGTGAAGTCTGCCCGTGTCGGTTATTCCAAAATGCTGCTGGGTGTTTATGCCTACTTTATAGAGCATAAGCAGCGCAACACCCTTATT&#39;</span>
+<span class="n">aaaD</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[9]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&#39;GTGAATATATCGAACAGTCAGGTTAACAGGCTGCGGCATTTTGTCCGCGCCGGGCTTCGCTCACTGTTCAGGCCGGAGCCACAGACCGCCGTTGAATGGGCGGATGCTAATTACTATCTCCCGAAAGAATCCGCATACCAGGAAGGGCGCTGGGAAACACTGCCCTTTCAGCGGGCCATCATGAATGCGATGGGCAGCGACTACATCCGTGAGGTGAATGTGGTGAAGTCTGCCCGTGTCGGTTATTCCAAAATGCTGCTGGGTGTTTATGCCTACTTTATAGAGCATAAGCAGCGCAACACCCTTATT&#39;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">time</span> _ = match(genome, aaaD)
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>CPU times: user 2.62 s, sys: 0 ns, total: 2.62 s
+Wall time: 2.62 s
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">time</span> _ = rabin_karp(genome, aaaD, 2**64 - 1)
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>CPU times: user 2.36 s, sys: 0 ns, total: 2.36 s
+Wall time: 2.36 s
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">time</span> _ = rabin_karp(genome, aaaD, 2**32 - 1)
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>CPU times: user 2.28 s, sys: 0 ns, total: 2.28 s
+Wall time: 2.28 s
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">time</span> _ = rabin_karp(genome, aaaD, 2**16 - 1)
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>CPU times: user 1.69 s, sys: 0 ns, total: 1.69 s
+Wall time: 1.69 s
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">time</span> _ = rabin_karp(genome, aaaD, 2**8 - 1)
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>CPU times: user 1.61 s, sys: 3.97 ms, total: 1.61 s
+Wall time: 1.61 s
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">accC</span> <span class="o">=</span> <span class="s1">&#39;ATGCTGGATAAAATTGTTATTGCCAACCGCGGCGAGATTGCATTGCGTATTCTTCGTGCCTGTAAAGAACTGGGCATCAAGACTGTCGCTGTGCACTCCAGCGCGGATCGCGATCTAAAACACGTATTACTGGCAGATGAAACGGTCTGTATTGGCCCTGCTCCGTCAGTAAAAAGTTATCTGAACATCCCGGCAATCATCAGCGCCGCTGAAATCACCGGCGCAGTAGCAATCCATCCGGGTTACGGCTTCCTCTCCGAGAACGCCAACTTTGCCGAGCAGGTTGAACGCTCCGGCTTTATCTTCATTGGCCCGAAAGCAGAAACCATTCGCCTGATGGGCGACAAAGTATCCGCAATCGCGGCGATGAAAAAAGCGGGCGTCCCTTGCGTACCGGGTTCTGACGGCCCGCTGGGCGACGATATGGATAAAAACCGTGCCATTGCTAAACGCATTGGTTATCCGGTGATTATCAAAGCCTCCGGCGGCGGCGGCGGTCGCGGTATGCGCGTAGTGCGCGGCGACGCTGAACTGGCACAATCCATCTCCATGACCCGTGCGGAAGCGAAAGCTGCTTTCAGCAACGATATGGTTTACATGGAGAAATACCTGGAAAATCCTCGCCACGTCGAGATTCAGGTACTGGCTGACGGTCAGGGCAACGCTATCTATCTGGCGGAACGTGACTGCTCCATGCAACGCCGCCACCAGAAAGTGGTCGAAGAAGCGCCAGCACCGGGCATTACCCCGGAACTGCGTCGCTACATCGGCGAACGTTGCGCTAAAGCGTGTGTTGATATCGGCTATCGCGGTGCAGGTACTTTCGAGTTCCTGTTCGAAAACGGCGAGTTCTATTTCATCGAAATGAACACCCGTATTCAGGTAGAACACCCGGTTACAGAAATGATCACCGGCGTTGACCTGATCAAAGAACAGCTGCGTATCGCTGCCGGTCAACCGCTGTCGATCAAGCAAGAAGAAGTTCACGTTCGCGGCCATGCGGTGGAATGTCGTATCAACGCCGAAGATCCGAACACCTTCCTGCCAAGTCCGGGCAAAATCACCCGTTTCCACGCACCTGGCGGTTTTGGCGTACGTTGGGAGTCTCATATCTACGCGGGCTACACCGTACCGCCGTACTATGACTCAATGATCGGTAAGCTGATTTGCTACGGTGAAAACCGTGACGTGGCGATTGCCCGCATGAAGAATGCGCTGCAGGAGCTGATCATCGACGGTATCAAAACCAACGTTGATCTGCAGATCCGCATCATGAATGACGAGAACTTCCAGCATGGTGGCACTAACATCCACTATCTGGAGAAAAAACTCGGTCTTCAGGAAAAATAA&#39;</span>
+<span class="n">accC</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[15]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&#39;ATGCTGGATAAAATTGTTATTGCCAACCGCGGCGAGATTGCATTGCGTATTCTTCGTGCCTGTAAAGAACTGGGCATCAAGACTGTCGCTGTGCACTCCAGCGCGGATCGCGATCTAAAACACGTATTACTGGCAGATGAAACGGTCTGTATTGGCCCTGCTCCGTCAGTAAAAAGTTATCTGAACATCCCGGCAATCATCAGCGCCGCTGAAATCACCGGCGCAGTAGCAATCCATCCGGGTTACGGCTTCCTCTCCGAGAACGCCAACTTTGCCGAGCAGGTTGAACGCTCCGGCTTTATCTTCATTGGCCCGAAAGCAGAAACCATTCGCCTGATGGGCGACAAAGTATCCGCAATCGCGGCGATGAAAAAAGCGGGCGTCCCTTGCGTACCGGGTTCTGACGGCCCGCTGGGCGACGATATGGATAAAAACCGTGCCATTGCTAAACGCATTGGTTATCCGGTGATTATCAAAGCCTCCGGCGGCGGCGGCGGTCGCGGTATGCGCGTAGTGCGCGGCGACGCTGAACTGGCACAATCCATCTCCATGACCCGTGCGGAAGCGAAAGCTGCTTTCAGCAACGATATGGTTTACATGGAGAAATACCTGGAAAATCCTCGCCACGTCGAGATTCAGGTACTGGCTGACGGTCAGGGCAACGCTATCTATCTGGCGGAACGTGACTGCTCCATGCAACGCCGCCACCAGAAAGTGGTCGAAGAAGCGCCAGCACCGGGCATTACCCCGGAACTGCGTCGCTACATCGGCGAACGTTGCGCTAAAGCGTGTGTTGATATCGGCTATCGCGGTGCAGGTACTTTCGAGTTCCTGTTCGAAAACGGCGAGTTCTATTTCATCGAAATGAACACCCGTATTCAGGTAGAACACCCGGTTACAGAAATGATCACCGGCGTTGACCTGATCAAAGAACAGCTGCGTATCGCTGCCGGTCAACCGCTGTCGATCAAGCAAGAAGAAGTTCACGTTCGCGGCCATGCGGTGGAATGTCGTATCAACGCCGAAGATCCGAACACCTTCCTGCCAAGTCCGGGCAAAATCACCCGTTTCCACGCACCTGGCGGTTTTGGCGTACGTTGGGAGTCTCATATCTACGCGGGCTACACCGTACCGCCGTACTATGACTCAATGATCGGTAAGCTGATTTGCTACGGTGAAAACCGTGACGTGGCGATTGCCCGCATGAAGAATGCGCTGCAGGAGCTGATCATCGACGGTATCAAAACCAACGTTGATCTGCAGATCCGCATCATGAATGACGAGAACTTCCAGCATGGTGGCACTAACATCCACTATCTGGAGAAAAAACTCGGTCTTCAGGAAAAATAA&#39;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">time</span> _ = match(genome, accC)
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>CPU times: user 2.76 s, sys: 0 ns, total: 2.76 s
+Wall time: 2.76 s
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">time</span> _ = rabin_karp(genome, accC, 2**64 - 1)
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>CPU times: user 2.25 s, sys: 0 ns, total: 2.25 s
+Wall time: 2.25 s
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">time</span> _ = rabin_karp(genome, accC, 2**32 - 1)
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>CPU times: user 2.32 s, sys: 0 ns, total: 2.32 s
+Wall time: 2.32 s
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">time</span> _ = rabin_karp(genome, accC, 2**16 - 1)
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>CPU times: user 1.88 s, sys: 0 ns, total: 1.88 s
+Wall time: 1.88 s
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">time</span> _ = rabin_karp(genome, accC, 2**8 - 1)
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>CPU times: user 1.7 s, sys: 3.96 ms, total: 1.71 s
+Wall time: 1.71 s
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+ 
+
